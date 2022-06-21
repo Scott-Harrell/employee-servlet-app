@@ -31,6 +31,15 @@ public class EmployeeDao {
 	//Read
 	public List<Employee> findAll(){
 		
+		// grab the session 
+		Session ses = HibernateUtil.getSession();
+		
+		// Make an HGL -- Hibernate Query Language: odd mix of OOP & native SQL 
+		List<Employee> emps = ses.createQuery("from Employee", Employee.class).list();
+		
+		// Return the list of employees
+		return emps;
+		
 	}
 	
 	public boolean update(Employee e) {
